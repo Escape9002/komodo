@@ -1,0 +1,19 @@
+[[stack]]
+name = "swt25w33"
+[stack.config]
+server = "peter2"
+auto_pull = false
+run_build = true
+linked_repo = "swt25w33"
+webhook_enabled = false
+file_paths = ["docker-compose.yml"]
+pre_deploy.command = """
+mkdir -p /home/escape9002/swt25w33
+mkdir -p /home/escape9002/swt25w33/db
+mkdir -p /home/escape9002/swt25w33/uploads
+"""
+pre_deploy.shell_mode = true
+environment = """
+  # VARIABLE = value
+MOUNT_PATH=/home/escape9002/swt25w33
+"""
