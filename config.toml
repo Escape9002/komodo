@@ -2,9 +2,9 @@
 name = "garados"
 tags = ["gitified", "webserver"]
 [server.config]
-enabled = true
 address = "10.1.1.195:8120"
 region = "Kanto"
+enabled = true
 
 ##
 
@@ -12,18 +12,9 @@ region = "Kanto"
 name = "pikachu"
 tags = ["gitified", "webserver"]
 [server.config]
-enabled = true
 address = "10.1.1.160:8120"
 region = "Hoenn"
-
-##
-[[builder]]
-name = "adg"
-tags = ["gitified"]
-[builder.config]
-type = "Server"
-params.server = "pikachu"
-
+enabled = true
 
 ##
 
@@ -32,14 +23,13 @@ name = "snivy"
 tags = ["gitified", "proxy"]
 [server.config]
 address = "10.1.1.84:8120"
-enabled = true
 region = "Einall"
-
+enabled = true
 
 ##
 
 [[stack]]
-name = "papaWebsite"
+name = "papawebsite"
 tags = ["gitified"]
 [stack.config]
 server = "garados"
@@ -105,6 +95,17 @@ image_registry = [
 ##
 
 [[repo]]
+name = "papaWebsite"
+tags = ["gitified"]
+[repo.config]
+git_provider = "192.168.0.14:3500"
+git_https = false
+repo = "Escape9002/PapaWebsite"
+webhook_enabled = false
+
+##
+
+[[repo]]
 name = "swt25w33"
 tags = ["gitified"]
 [repo.config]
@@ -115,18 +116,11 @@ environment = """
 MOUNT_PATH=/home/escape9002/docker_setup/app-data/swt25w33
 """
 
-## 
-[[repo]]
-name = "papaWebsite"
+##
+
+[[builder]]
+name = "adg"
 tags = ["gitified"]
-[repo.config]
-git_provider = "192.168.0.14:3500"
-git_https = false
-repo = "Escape9002/PapaWebsite"
-webhook_enabled = false
-file_paths = ["docker-compose.yml"]
-pre_deploy.command = """
-  # Add multiple commands on new lines. Supports comments and escaped newlines.
-git submodule update --init --recursive
-"""
-pre_deploy.shell_mode = false
+[builder.config]
+type = "Server"
+params.server = "pikachu"
