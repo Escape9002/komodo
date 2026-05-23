@@ -1,6 +1,6 @@
 [[server]]
 name = "garados"
-tags = ["dfgdrgdfg"]
+tags = ["gitified, webserver"]
 [server.config]
 enabled = true
 
@@ -8,7 +8,7 @@ enabled = true
 
 [[server]]
 name = "pikachu"
-tags = ["dfgdrgdfg"]
+tags = ["gitified, webserver"]
 [server.config]
 enabled = true
 
@@ -16,15 +16,15 @@ enabled = true
 
 [[server]]
 name = "snivy"
-tags = ["dfgdrgdfg"]
+tags = ["gitified, proxy"]
 [server.config]
 enabled = true
 
 ##
 
 [[stack]]
-name = "peter"
-tags = ["dfgdrgdfg"]
+name = "papaWebsite"
+tags = ["gitified"]
 [stack.config]
 auto_update = true
 git_provider = "192.168.0.14:3500"
@@ -42,7 +42,7 @@ pre_deploy.shell_mode = false
 
 [[stack]]
 name = "swt25w33"
-tags = ["dfgdrgdfg"]
+tags = ["gitified"]
 [stack.config]
 auto_pull = false
 run_build = true
@@ -64,7 +64,7 @@ MOUNT_PATH=/srv/data/swt25w33
 
 [[deployment]]
 name = "swt25w33"
-tags = ["dfgdrgdfg"]
+tags = ["gitified"]
 [deployment.config]
 image.type = "Build"
 image.params.build = "swt25w33"
@@ -74,7 +74,7 @@ redeploy_on_build = true
 
 [[build]]
 name = "swt25w33"
-tags = ["dfgdrgdfg"]
+tags = ["gitified"]
 [build.config]
 builder = "Local"
 linked_repo = "localswt"
@@ -87,7 +87,7 @@ image_registry = [
 
 [[repo]]
 name = "swt25w33"
-tags = ["dfgdrgdfg"]
+tags = ["gitified"]
 [repo.config]
 git_account = "escape9002"
 repo = "Escape9002/swt25w33"
@@ -95,3 +95,19 @@ webhook_enabled = false
 environment = """
 MOUNT_PATH=/home/escape9002/docker_setup/app-data/swt25w33
 """
+
+## 
+[[repo]]
+name = "papaWebsite"
+tags = ["gitified"]
+[repo.config]
+git_provider = "192.168.0.14:3500"
+git_https = false
+repo = "Escape9002/PapaWebsite"
+webhook_enabled = false
+file_paths = ["docker-compose.yml"]
+pre_deploy.command = """
+  # Add multiple commands on new lines. Supports comments and escaped newlines.
+git submodule update --init --recursive
+"""
+pre_deploy.shell_mode = false
