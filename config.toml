@@ -1,5 +1,21 @@
 [[server]]
-name = "Local"
+name = "garados"
+tags = ["dfgdrgdfg"]
+[server.config]
+enabled = true
+
+##
+
+[[server]]
+name = "pikachu"
+tags = ["dfgdrgdfg"]
+[server.config]
+enabled = true
+
+##
+
+[[server]]
+name = "snivy"
 tags = ["dfgdrgdfg"]
 [server.config]
 enabled = true
@@ -50,7 +66,6 @@ MOUNT_PATH=/srv/data/swt25w33
 name = "swt25w33"
 tags = ["dfgdrgdfg"]
 [deployment.config]
-server = "Local"
 image.type = "Build"
 image.params.build = "swt25w33"
 redeploy_on_build = true
