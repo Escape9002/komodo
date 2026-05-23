@@ -1,19 +1,109 @@
+[[server]]
+name = "Local"
+tags = ["dfgdrgdfg"]
+[server.config]
+enabled = true
+
+##
+
+[[server]]
+name = "peter"
+tags = ["dfgdrgdfg"]
+[server.config]
+region = "internal"
+enabled = true
+
+##
+
+[[server]]
+name = "peter2"
+tags = ["dfgdrgdfg"]
+[server.config]
+enabled = true
+
+##
+
+[[server]]
+name = "proxy"
+tags = ["dfgdrgdfg"]
+[server.config]
+enabled = true
+
+##
+
+[[stack]]
+name = "peter"
+tags = ["dfgdrgdfg"]
+[stack.config]
+server = "peter"
+auto_update = true
+git_provider = "192.168.0.14:3500"
+git_https = false
+repo = "Escape9002/PapaWebsite"
+webhook_enabled = false
+file_paths = ["docker-compose.yml"]
+pre_deploy.command = """
+  # Add multiple commands on new lines. Supports comments and escaped newlines.
+git submodule update --init --recursive
+"""
+pre_deploy.shell_mode = false
+
+##
+
 [[stack]]
 name = "swt25w33"
+tags = ["dfgdrgdfg"]
 [stack.config]
-server = "proxy"
+server = "peter2"
 auto_pull = false
 run_build = true
 linked_repo = "swt25w33"
 webhook_enabled = false
 file_paths = ["docker-compose.yml"]
 pre_deploy.command = """
-mkdir -p /home/escape9002/swt25w33
-mkdir -p /home/escape9002/swt25w33/db
-mkdir -p /home/escape9002/swt25w33/uploads
+mkdir -p /srv/data/swt25w33
+mkdir -p /srv/data/swt25w33/db
+mkdir -p /srv/data/swt25w33/uploads
 """
 pre_deploy.shell_mode = true
 environment = """
   # VARIABLE = value
-MOUNT_PATH=/home/escape9002/swt25w33
+MOUNT_PATH=/srv/data/swt25w33
+"""
+
+##
+
+[[deployment]]
+name = "swt25w33"
+tags = ["dfgdrgdfg"]
+[deployment.config]
+server = "peter"
+image.type = "Build"
+image.params.build = "swt25w33"
+redeploy_on_build = true
+
+##
+
+[[build]]
+name = "swt25w33"
+tags = ["dfgdrgdfg"]
+[build.config]
+builder = "Local"
+linked_repo = "swt25w33"
+webhook_enabled = false
+image_registry = [
+  { domain = "192.168.0.14:3500", account = "escape9002", organization = "swt25233" }
+]
+
+##
+
+[[repo]]
+name = "swt25w33"
+tags = ["dfgdrgdfg"]
+[repo.config]
+git_account = "escape9002"
+repo = "Escape9002/swt25w33"
+webhook_enabled = false
+environment = """
+MOUNT_PATH=/home/escape9002/docker_setup/app-data/swt25w33
 """
