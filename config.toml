@@ -3,6 +3,7 @@ name = "garados"
 tags = ["gitified", "webserver"]
 [server.config]
 enabled = true
+address = "10.1.1.195:8120"
 region = "Kanto"
 
 ##
@@ -12,6 +13,7 @@ name = "pikachu"
 tags = ["gitified", "webserver"]
 [server.config]
 enabled = true
+address = "10.1.1.160:8120"
 region = "Hoenn"
 
 ##
@@ -29,6 +31,7 @@ params.server = "pikachu"
 name = "snivy"
 tags = ["gitified", "proxy"]
 [server.config]
+address = "10.1.1.84:8120"
 enabled = true
 region = "Einall"
 
