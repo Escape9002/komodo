@@ -1,7 +1,7 @@
 [[stack]]
 name = "swt25w33"
 [stack.config]
-server = "peter2"
+server = "proxy"
 auto_pull = false
 run_build = true
 linked_repo = "swt25w33"
